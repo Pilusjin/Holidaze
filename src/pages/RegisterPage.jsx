@@ -65,7 +65,7 @@ const RegisterPage = () => {
       
         try {
 
-          const response = await fetch(apiUrl+'holidaze/auth/register', {
+          const response = await fetch (apiUrl+'holidaze/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

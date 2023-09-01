@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -21,15 +21,6 @@ const VenueImage = styled.img`
 
   @media (max-width: 768px) {
     max-height: 300px;
-  }
-`;
-
-const CalendarContainer = styled.div`
-  margin-top: 20px;
-  width: 100%;
-
-  @media (max-width: 768px) {
-    width: 90%;
   }
 `;
 
@@ -73,13 +64,6 @@ const VenuePage = () => {
             <p>{venue.description}</p>
           </VenueInfo>
         )}
-        <CalendarContainer>
-          <Calendar 
-            value={calendarValue}
-            onChange={setCalendarValue}
-            tileClassName={tileClassName}
-          />
-        </CalendarContainer>
       </Container>
     </Layout>
   );
