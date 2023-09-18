@@ -1,35 +1,8 @@
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
-import styled from 'styled-components';
+import { Avatar, ProfileContainer, ProfileInfo } from '../styledComponents/Profile';
 
-const ProfileContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  @media (min-width: 768px) {
-    padding: 40px;
-  }
-`;
 
-const Avatar = styled.img`
-  width: 150px; /* increased size */
-  height: 150px; /* increased size */
-  border-radius: 50%;
-  margin-bottom: 20px;
-  @media (min-width: 768px) {
-    width: 200px;
-    height: 200px;
-  }
-`;
-
-const ProfileInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-`;
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
