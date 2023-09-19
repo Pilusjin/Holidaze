@@ -8,7 +8,6 @@ import { CustomCalendar, Feature, FeatureList, GuestsInput, GuestsLabel, Image, 
 import "react-datepicker/dist/react-datepicker.css";
 
 
-
 const VenuePage = () => {
   const { id } = useParams();
   const [venue, setVenue] = useState(null);

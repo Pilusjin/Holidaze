@@ -1,49 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
-import styled from 'styled-components';
 import { apiUrl } from '../api/constants';
-
-
-
-const RegisterContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f4f4f4;
-`;
-
-const RegisterForm = styled.form`
-  background: #fff;
-  padding: 3em;
-  border-radius: 8px;
-  box-shadow: 0px 0px 1em rgba(0, 0, 0, 0.1);
-`;
-
-const Label = styled.label`
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5em;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 0.5em;
-  margin-bottom: 1em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`;
-
-const SubmitButton = styled.button`
-  background: blue;
-  color: white;
-  padding: 0.5em 1em;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-`;
-
+import { Input, Label, RegisterContainer, RegisterForm, SubmitButton } from '../styledComponents/Login';
 
 const RegisterPage = () => {
     const [name, setName] = useState('');
@@ -91,7 +49,7 @@ const RegisterPage = () => {
           <h1>Register</h1>
           <RegisterForm onSubmit={handleRegister}>
             <Label>Username</Label>
-            <Input 
+            <Input
               type="text" 
               name="username" 
               value={name} 
