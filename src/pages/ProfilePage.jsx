@@ -4,6 +4,7 @@ import { apiUrl } from '../api/constants';
 import { Avatar, ProfileContainer, ProfileInfo } from '../styledComponents/Profile';
 import { save } from '../api/storage';
 
+
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
   const [newAvatarInput, setNewAvatarInput] = useState("");

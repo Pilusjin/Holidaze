@@ -1,34 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Layout from '../components/Layout';
-
-const Container = styled.div`
-  margin: 0 auto;
-  padding: 16px;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const VenueImage = styled.img`
-  max-height: 500px;
-  max-width: 100%;
-  border-radius: 10px;
-
-  @media (max-width: 768px) {
-    max-height: 300px;
-  }
-`;
-
-const VenueInfo = styled.div`
-  text-align: center;
-  margin-top: 20px;
-`;
-
+import { Container, VenueImage, VenueInfo } from '../styledComponents/Venue';
 
 const VenuePage = () => {
   const { id } = useParams();
