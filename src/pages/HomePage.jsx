@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchBar from '../components/SearchBar';
 import Layout from '../components/layout';
 import { PageContainer, VenueCard, VenueCardsContainer, VenueDetails, VenueImage } from '../styledComponents/Home';

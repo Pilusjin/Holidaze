@@ -1,5 +1,3 @@
-import React from 'react';
-import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import VenuePage from './pages/VenuePage';
