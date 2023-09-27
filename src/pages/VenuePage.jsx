@@ -68,6 +68,13 @@ const VenuePage = () => {
     const updatedVenue = {
       name: e.target.name.value,
       description: e.target.description.value,
+      media: [e.target.media.value],
+      price: Number(e.target.price.value),
+      maxGuests: Number(e.target.maxGuests.value),
+      location: {
+        address: e.target.address.value,
+        city: e.target.city.value, 
+        country: e.target.country.value}
     };
 
     const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`, {
