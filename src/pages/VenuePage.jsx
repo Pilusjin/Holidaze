@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import { load } from "../api/storage";
-import { Card, FormGroup, Input, Label, SubmitButton, TextArea } from "../styles/Forms";
-import { CustomCalendar, Feature, FeatureList, GuestsInput, GuestsLabel, Image, ImageContainer, InfoRow, Location, PageContainer, StyledTable, Title, VenueInfoContainer } from "../styles/Venue";
+import { Card, FormGroup, Input, Label, SubmitButton, TextArea } from "../styledComponents/Form";
+import { CustomCalendar, Feature, FeatureList, GuestsInput, GuestsLabel, Image, ImageContainer, InfoRow, Location, PageContainer, StyledTable, Title, VenueInfoContainer } from "../styledComponents/Venue";
 
-import "react-datepicker/dist/react-datepicker.css";
 
 
 const VenuePage = () => {
@@ -16,6 +15,7 @@ const VenuePage = () => {
   const [endDate, setEndDate] = useState(null);
   const [bookedDates, setBookedDates] = useState([]);
   const profile = load('profile');
+  const [selectingStartDate, setSelectingStartDate] = useState(true); // Determine what type of date is being selected
   const [numGuests, setNumGuests] = useState(1);
   const [showBookings, setShowBookings] = useState(false);
 
@@ -30,33 +30,61 @@ const VenuePage = () => {
   useEffect(() => {
     fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`)
       .then(response => response.json())
-      .then(data => {
-        setVenue(data);
+      .then(parsed => {
+        console.log('Parsed data:', parsed);  // Log here
+        setVenue(parsed);
         
         // If bookings are public, populate booked dates here
-        // TODO refecator this
-        if (data.bookings) {
-          data.bookings.forEach(booking => {
+        if (parsed.bookings) {
+          const allBookedDates = [];
+          parsed.bookings.forEach(booking => {
             let currentDate = new Date(booking.dateFrom);
             const endDate = new Date(booking.dateTo);
             while (currentDate <= endDate) {
-              setBookedDates([...bookedDates,new Date(currentDate)])
+              allBookedDates.push(new Date(currentDate));
               currentDate.setDate(currentDate.getDate() + 1);
             }
           });
+          setBookedDates(allBookedDates);
         }
       });
   }, [id]);
-  // TODO check this
-  console.log(bookedDates)
 
-  const isBooked = date => {
-    const formattedDate = new Date(date);
-    return bookedDates.some(bookedDate =>
-      formattedDate.getDate() === bookedDate.getDate()
-    );
+  
+
+  const handleDelete = async () => {
+    const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem("token")}`
+      }
+    });
+
+    if (response.ok) window.location.replace("/");
   };
 
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    const updatedVenue = {
+      name: e.target.name.value,
+      description: e.target.description.value,
+    };
+
+    const response = await fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify(updatedVenue),
+    });
+
+    if (response.ok) {
+      const updatedVenue = await response.json();
+      setVenue(updatedVenue);
+      setIsEditing(false);
+    }
+  };
 
 
   const handleBooking = async () => {
@@ -65,7 +93,7 @@ const VenuePage = () => {
       return;
     }
 
-    const bookingInput = {
+    const bookingInfo = {
       dateFrom: startDate,
       dateTo: endDate,
       guests: numGuests,
@@ -79,7 +107,7 @@ const VenuePage = () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem("token")}`
       },
-      body: JSON.stringify(bookingInput),
+      body: JSON.stringify(bookingInfo),
     });
 
     if (response.ok) {
@@ -89,24 +117,37 @@ const VenuePage = () => {
     }
   };
 
-
-  const handleCalendarClick = (date) => {
-      if (!isBooked(date)) {
-        if(!startDate || date < startDate) setStartDate(date);
-        // TODO check that no dates between start and and date are booked
-        setEndDate(date)
-      } else {
-        alert('This date is already booked.');
-      }
+  const isBooked = date => {
+    const formattedDate = new Date(date);
+    return bookedDates.some(bookedDate =>
+      formattedDate.toDateString() === bookedDate.toDateString()
+    );
   };
 
-  // const tileClassName = ({ date, view }) => {
-    // if (view !== "month") return;
-    // if (isBooked(date)) return "booked"; // Class name for booked dates
-    // if (date.toDateString() === startDate?.toDateString()) return "selected-start"; // Class name for start date
-    // TODO styling for range inbetween start and end dates
-    // if (date.toDateString() === endDate?.toDateString()) return "selected-end"; // Class name for end date
-  // };
+  const handleCalendarClick = (date) => {
+    if (selectingStartDate) {
+      if (!isBooked(date)) {
+        setStartDate(date);
+        setSelectingStartDate(false); // Switch to end date selection
+      } else {
+        alert('This start date is already booked.');
+      }
+    } else {
+      if (date > startDate) {
+        setEndDate(date);
+        setSelectingStartDate(true); // Switch back to start date selection
+      } else {
+        alert('End date must be after start date.');
+      }
+    }
+  };
+
+  const tileClassName = ({ date, view }) => {
+    if (view !== "month") return;
+    if (isBooked(date)) return "booked"; // Class name for booked dates
+    if (date.toDateString() === startDate?.toDateString()) return "selected-start"; // Class name for start date
+    if (date.toDateString() === endDate?.toDateString()) return "selected-end"; // Class name for end date
+  };
 
   return (
     <Layout>
