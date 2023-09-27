@@ -53,7 +53,7 @@ const StyledLink = styled(Link)`
 
 export default function Header() {
 
-  const user = load("profile");
+  const profile = load("profile");
 
   const handleLogout = () => {
     clear();
@@ -68,11 +68,17 @@ export default function Header() {
           <li>
             <a href="/">Home</a>
           </li>
-          {user ? (
+          {profile ? (
             <>
               <li>
-                <StyledLink to={`/profile/${user.name}`}>Profile</StyledLink>
+                <StyledLink to={`/profile/${profile.name}`}>Profile</StyledLink>
               </li>
+
+              {profile?.venueManager && 
+              <li>
+                <StyledLink to={`/profile/${profile.name}/my-venues`}>My Venues</StyledLink>
+              </li>}
+
               <li>
                 <a href="#!" onClick={handleLogout}>
                   Logout

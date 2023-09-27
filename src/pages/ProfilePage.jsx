@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { apiUrl } from '../api/constants';
-import { Avatar, ProfileContainer, ProfileInfo, RightColumn } from '../styledComponents/Profile';
+import { Avatar, ProfileContainer, ProfileInfo, } from '../styledComponents/Profile';
 import { save } from '../api/storage';
-import VenueCreationForm from '../components/CreateVenue';
 import { OwnVenues } from '../components/OwnVenues';
 import BookedVenues from '../components/BookedVenues';
+import { StyledInput, SubmitButton } from '../styledComponents/Form';
 
 
 const ProfilePage = () => {
@@ -62,28 +62,29 @@ const ProfilePage = () => {
             />
             <h2>{profile.name}</h2>
             <p>Email: {profile.email}</p>
+            <h2>Update Avatar</h2>
+            
+            <StyledInput
+            type="url"
+            placeholder="New Avatar URL"
+            value={newAvatarInput}
+            onChange={(e) => setNewAvatarInput(e.target.value)}
+            />
+
+      <SubmitButton onClick={handleUpdateAvatar}>Update Avatar </SubmitButton>
+
           </ProfileInfo>
         ) : (
           <p>No profile information available.</p>
         )}
 
-          <RightColumn>
-          {profile?.venueManager && <VenueCreationForm />}
           {profile?.venueManager && name && <OwnVenues name={name} />}
 
-          <BookedVenues></BookedVenues>
-        </RightColumn>
+          <BookedVenues/>
+        
       </ProfileContainer>
 
-      <h2>Update Avatar</h2>
-      <input
-      type="url"
-      placeholder="New Avatar URL"
-      value={newAvatarInput}
-      onChange={(e) => setNewAvatarInput(e.target.value)}
-  />
-
-      <button onClick={handleUpdateAvatar}>Update Avatar</button>
+ 
     </Layout>
   );
 };
