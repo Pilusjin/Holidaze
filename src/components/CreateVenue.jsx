@@ -53,7 +53,7 @@ const VenueCreationForm = ({ onSubmitVenue }) => {
   const handleSubmitVenue = async (event) => {
     event.preventDefault();
     try {
-      const createURL = `${apiUrl}/venues`;
+      const createURL = `${apiUrl}/holidaze/venues`;
       const token = localStorage.getItem('token');
       const response = await fetch(createURL, {
         method: 'POST',
@@ -66,7 +66,7 @@ const VenueCreationForm = ({ onSubmitVenue }) => {
       
       if (response.ok) {
         const createdVenue = await response.json();
-        onSubmitVenue(createdVenue);
+        // onSubmitVenue(createdVenue);
         setNewVenue(initialVenueState);
       } else {
         console.error('Failed to create venue');
