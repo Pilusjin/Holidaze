@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { apiUrl } from '../api/constants';
-import { Avatar, ProfileContainer, ProfileInfo } from '../styledComponents/Profile';
+import { Avatar, ProfileContainer, ProfileInfo, RightColumn } from '../styledComponents/Profile';
 import { save } from '../api/storage';
+import VenueCreationForm from '../components/CreateVenue';
+import { OwnVenues } from '../components/OwnVenues';
+import BookedVenues from '../components/BookedVenues';
 
 
 const ProfilePage = () => {
+  const { name } = useParams();
   const [profile, setProfile] = useState(null);
   const [newAvatarInput, setNewAvatarInput] = useState("");
   const token = localStorage.getItem("token");
@@ -61,15 +66,23 @@ const ProfilePage = () => {
         ) : (
           <p>No profile information available.</p>
         )}
+
+          <RightColumn>
+          {profile?.venueManager && <VenueCreationForm />}
+          {profile?.venueManager && name && <OwnVenues name={name} />}
+
+          <BookedVenues></BookedVenues>
+        </RightColumn>
       </ProfileContainer>
 
       <h2>Update Avatar</h2>
       <input
-        type="text"
-        placeholder="New Avatar URL"
-        value={newAvatarInput}
-        onChange={(e) => setNewAvatarInput(e.target.value)}
-      />
+      type="url"
+      placeholder="New Avatar URL"
+      value={newAvatarInput}
+      onChange={(e) => setNewAvatarInput(e.target.value)}
+  />
+
       <button onClick={handleUpdateAvatar}>Update Avatar</button>
     </Layout>
   );
