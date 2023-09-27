@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/Holidaze-logos_white.png";
 import { clear, load } from "../api/storage";

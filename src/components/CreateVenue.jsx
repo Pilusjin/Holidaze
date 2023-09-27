@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { apiUrl } from '../api/constants';
 import { Card, CheckboxGroup, CheckboxLabel, FormGroup, Input, Label, SubmitButton, TextArea } from '../styledComponents/Form';
@@ -23,7 +23,7 @@ const initialVenueState = {
   },
 };
   
-const VenueCreationForm = ({ onSubmitVenue }) => {
+const VenueCreationForm = () => {
   const [newVenue, setNewVenue] = useState(initialVenueState);
 
   const handleVenueInputChange = (field, value) => {
@@ -65,8 +65,6 @@ const VenueCreationForm = ({ onSubmitVenue }) => {
       });
       
       if (response.ok) {
-        const createdVenue = await response.json();
-        // onSubmitVenue(createdVenue);
         setNewVenue(initialVenueState);
       } else {
         console.error('Failed to create venue');
