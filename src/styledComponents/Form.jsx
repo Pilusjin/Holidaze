@@ -70,6 +70,7 @@ export const StyledForm = styled.form`
 export const StyledInput = styled.input`
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 4px;
+  width: 400px
 `;
