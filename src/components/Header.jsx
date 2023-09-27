@@ -1,64 +1,77 @@
 import styled from "styled-components";
 import React from "react";
 import { Link } from "react-router-dom";
-
 import Logo from "../assets/Holidaze-logos_white.png";
 import { clear, load } from "../api/storage";
 
-
 const NavBar = styled.nav`
   font-size: 18px;
-  background: linear-gradient(to right, #ff5f6d, #ffc371);
+  background:#36454F;
+;
   border-bottom: 1px solid;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 2vh;
 `;
 
+const LogoImg = styled.img`
+  height: 200px;
+  width: 600px;
+  margin-bottom: 0.1vh;
+`;
+
+
 const StyledList = styled.ul`
   display: flex;
   flex-direction: row;
-  gap: 2vh;
+  gap: 3vh;
   list-style: none;
-  padding-right: 2vh;
+  padding: 1vh 0;
+
+  a, a:visited {
+    color: #ffffff;  /* White color */
+    text-decoration: none;  /* Optional: Remove underline */
+    transition: color 0.3s ease-in-out;  /* Optional: Smooth color transition */
+  }
+
+  a:hover, a:focus {
+    color: #bbbbbb;  /* Lighter color on hover/focus for a subtle effect */
+  }
 `;
 
-const LogoImg = styled.img`
-  height: 100px;
+const StyledLink = styled(Link)`
+  color: #ffffff;  /* White color */
+  text-decoration: none;  /* Optional: Remove underline */
+  transition: color 0.3s ease-in-out;  /* Optional: Smooth color transition */
+
+  &:hover, &:focus {
+    color: #bbbbbb;  /* Lighter color on hover/focus for a subtle effect */
+  }
 `;
-
-
 
 export default function Header() {
 
-  const user = load("profile"); // Load the user's profile from local storage or your authentication context
+  const user = load("profile");
 
   const handleLogout = () => {
-    clear(); // Clear user's token and profile from local storage
-
-    // Redirect to the login page
+    clear();
     window.location.href = "/login";
-
   };
 
-  return (
-    <>
 
-    
-    
+  return (
     <NavBar>
-    <a href="/"><LogoImg src={Logo} alt="Logo"/></a>
-    <StyledList>
-        <ul>
+      <a href="/"><LogoImg src={Logo} alt="Logo"/></a>
+      <StyledList>
           <li>
             <a href="/">Home</a>
           </li>
           {user ? (
             <>
               <li>
-                <Link to={`/profile/${user.name}`}>Profile</Link>
+                <StyledLink to={`/profile/${user.name}`}>Profile</StyledLink>
               </li>
               <li>
                 <a href="#!" onClick={handleLogout}>
@@ -71,9 +84,7 @@ export default function Header() {
               <a href="/login">Log in</a>
             </li>
           )}
-        </ul>
       </StyledList>
     </NavBar>
-    </>
   );
 }
