@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Layout from '../components/Layout';
 import { apiUrl } from '../api/constants';
 import { Input, Label, RegisterContainer, RegisterForm, SubmitButton } from '../styledComponents/Login';
@@ -23,7 +23,7 @@ const RegisterPage = () => {
       
         try {
 
-          const response = await fetch (apiUrl+'holidaze/auth/register', {
+          const response = await fetch (apiUrl+'/holidaze/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,6 +34,7 @@ const RegisterPage = () => {
           if (response.ok) {
             const responseData = await response.json();
             console.log('Registration successful:', responseData);
+            window.location.href = "/login";
           } else {
             const errorData = await response.json();
             console.error('Registration failed:', errorData);

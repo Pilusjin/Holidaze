@@ -1,7 +1,7 @@
 import { apiUrl } from "./constants";
 
 export async function register(profile) {
-    const registerURL = apiUrl + "holidaze/auth/register";
+    const registerURL = apiUrl + "/holidaze/auth/register";
     const body = JSON.stringify(profile);
   
     const response = await fetch(registerURL, {
@@ -17,7 +17,7 @@ export async function register(profile) {
   }
   
   export async function login(profile) {
-    const loginURL = apiUrl + "holidaze/auth/login";
+    const loginURL = apiUrl + "/holidaze/auth/login";
     const body = JSON.stringify(profile);
   
     try {

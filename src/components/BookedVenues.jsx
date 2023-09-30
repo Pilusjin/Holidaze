@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CardContainer, CardContent, CardImage, CardTitle, VenueCardsContainer } from "../styledComponents/Home";
 import { VenuesContainer } from "../styledComponents/Profile";
 
@@ -8,10 +8,13 @@ function BookedVenues() {
   
   useEffect(() => {
     const fetchBookings = async () => {
-      const url = "https://api.noroff.dev/api/v1/holidaze/bookings?_customer=true&_venue=true";
-      const token = localStorage.getItem("token");
       const userProfile = JSON.parse(localStorage.getItem("profile") || '{}');
-      const currentUserName = userProfile.name || 'UNKNOWN_USER';
+
+      // brukte bare feil API
+      // neste blir  se litt p hvorfor bildene ikke kommer opp
+      // jeg tipper det har noe med litt annerledes struktur p objektene som n kommer fra backend
+      const url = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfile.name}/bookings`;
+      const token = localStorage.getItem("token");
   
       try {
         const response = await fetch(url, {
@@ -26,10 +29,8 @@ function BookedVenues() {
           return;
         }
     
-        const data = await response.json();
-        const userBookings = data.filter(booking => booking.customer.name === currentUserName);
-    
-        setBookings(userBookings);
+        const data = await response.json(); 
+        setBookings(data);
     
       } catch (error) {
         console.error("Error fetching bookings:", error);
@@ -38,7 +39,6 @@ function BookedVenues() {
   
     fetchBookings();
   }, []);
-  
   
   return (
     <div>

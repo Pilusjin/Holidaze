@@ -103,7 +103,7 @@ const VenuePage = () => {
     const bookingInfo = {
       dateFrom: startDate,
       dateTo: endDate,
-      guests: numGuests,
+      guests: Number(numGuests),
       venueId: venue.id
     };
 
@@ -118,6 +118,7 @@ const VenuePage = () => {
     });
 
     if (response.ok) {
+      window.location.reload();
       alert('Booking successful');
     } else {
       alert('Booking failed');
