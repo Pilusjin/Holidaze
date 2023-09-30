@@ -33,6 +33,15 @@ export const TextArea = styled.textarea`
   border-radius: 4px;
 `;
 
+export const CheckboxGroup = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const CheckboxLabel = styled.label`
+  margin-right: 10px;
+`;
+
 export const SubmitButton = styled.button`
   background-color: #007c06;
   color: white;
