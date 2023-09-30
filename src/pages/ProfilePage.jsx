@@ -20,7 +20,7 @@ const ProfilePage = () => {
     const updateAvatarData = { avatar: newAvatarInput };
 
     try {
-      const response = await fetch(`${apiUrl}holidaze/profiles/${profile.name}/media`, {
+      const response = await fetch(`${apiUrl}/holidaze/profiles/${profile.name}/media`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
