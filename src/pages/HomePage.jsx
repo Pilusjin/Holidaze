@@ -1,7 +1,13 @@
-import { useEffect, useState } from 'react';
-import SearchBar from '../components/SearchBar';
-import Layout from '../components/layout';
-import { PageContainer, VenueCard, VenueCardsContainer, VenueDetails, VenueImage } from '../styledComponents/Home';
+import { useEffect, useState } from "react";
+import SearchBar from "../components/SearchBar";
+import Layout from "../components/layout";
+import {
+  PageContainer,
+  VenueCard,
+  VenueCardsContainer,
+  VenueDetails,
+  VenueImage,
+} from "../styledComponents/Home";
 
 const HomePage = () => {
   const [venues, setVenues] = useState([]);
@@ -14,9 +20,8 @@ const HomePage = () => {
         setVenues(data);
         setSearchResults(data);
       })
-      .catch((error) => console.error('Error:', error));
+      .catch((error) => console.error("Error:", error));
   }, []);
-
 
   return (
     <Layout>

@@ -10,7 +10,7 @@ export const PageContainer = styled.div`
 export const VenueInfoContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: 
+  grid-template-areas:
     "image image info"
     "description description description"
     "bottom bottom bottom";
@@ -58,7 +58,7 @@ export const Feature = styled.span`
   padding: 4px 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #D8C4B6;
+  background-color: #d8c4b6;
 `;
 
 export const Location = styled.div`
@@ -79,20 +79,20 @@ export const GuestsInput = styled.input`
 export const CustomCalendar = styled(Calendar)`
   border: none;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   color: #333;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 
   .react-calendar__tile {
-    background-color: #F2D6B3;
+    background-color: #f2d6b3;
     border-radius: 4px;
-    border: 1px solid #F2F2F2;
+    border: 1px solid #f2f2f2;
     padding: 10px;
     transition: background-color 0.3s ease-in-out;
 
     &:hover {
-      background-color: #D99255;
+      background-color: #d99255;
     }
   }
 
@@ -105,7 +105,7 @@ export const CustomCalendar = styled(Calendar)`
     transition: background-color 0.3s ease-in-out;
 
     &:hover {
-      background-color: #D99255;
+      background-color: #d99255;
     }
   }
 
@@ -115,15 +115,15 @@ export const CustomCalendar = styled(Calendar)`
   }
 
   .booked {
-    background-color: #F2F2F2 !important;
+    background-color: #f2f2f2 !important;
   }
-  
-  .selected-start, .selected-end {
+
+  .selected-start,
+  .selected-end {
     background-color: #007c06 !important;
     color: #ffffff !important;
   }
 `;
-
 
 export const StyledTable = styled.table`
   width: 100%;
@@ -131,20 +131,21 @@ export const StyledTable = styled.table`
   margin: 20px 0;
 
   thead {
-    background-color: #F2D6B3;
+    background-color: #f2d6b3;
   }
 
-  th, td {
+  th,
+  td {
     padding: 10px;
     text-align: left;
     border: 1px solid #ddd;
   }
 
   tr:nth-child(even) {
-    background-color: #D99255;
+    background-color: #d99255;
   }
 
   tr:hover {
-    background-color: #D99255;
+    background-color: #d99255;
   }
 `;

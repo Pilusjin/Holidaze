@@ -5,8 +5,7 @@ import { clear, load } from "../api/storage";
 
 const NavBar = styled.nav`
   font-size: 18px;
-  background:#D99255;
-;
+  background: #d99255;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,7 +19,6 @@ const LogoImg = styled.img`
   margin-bottom: 0.1vh;
 `;
 
-
 const StyledList = styled.ul`
   display: flex;
   flex-direction: row;
@@ -28,29 +26,31 @@ const StyledList = styled.ul`
   list-style: none;
   padding: 1vh 0;
 
-  a, a:visited {
-    color: #ffffff; 
-    text-decoration: none; 
-    transition: color 0.3s ease-in-out; 
+  a,
+  a:visited {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
   }
 
-  a:hover, a:focus {
-    color: #bbbbbb; 
+  a:hover,
+  a:focus {
+    color: #bbbbbb;
   }
 `;
 
 const StyledLink = styled(Link)`
-  color: #ffffff; 
-  text-decoration: none;  
-  transition: color 0.3s ease-in-out;  
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
 
-  &:hover, &:focus {
-    color: #bbbbbb; 
+  &:hover,
+  &:focus {
+    color: #bbbbbb;
   }
 `;
 
 export default function Header() {
-
   const profile = load("profile");
 
   const handleLogout = () => {
@@ -58,36 +58,40 @@ export default function Header() {
     window.location.href = "/login";
   };
 
-
   return (
     <NavBar>
-      <a href="/"><LogoImg src={Logo} alt="Logo"/></a>
+      <a href="/">
+        <LogoImg src={Logo} alt="Logo" />
+      </a>
       <StyledList>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          {profile ? (
-            <>
-              <li>
-                <StyledLink to={`/profile/${profile.name}`}>Profile</StyledLink>
-              </li>
-
-              {profile?.venueManager && 
-              <li>
-                <StyledLink to={`/profile/${profile.name}/my-venues`}>My Venues</StyledLink>
-              </li>}
-
-              <li>
-                <a href="#!" onClick={handleLogout}>
-                  Logout
-                </a>
-              </li>
-            </>
-          ) : (
+        <li>
+          <a href="/">Home</a>
+        </li>
+        {profile ? (
+          <>
             <li>
-              <a href="/login">Log in</a>
+              <StyledLink to={`/profile/${profile.name}`}>Profile</StyledLink>
             </li>
-          )}
+
+            {profile?.venueManager && (
+              <li>
+                <StyledLink to={`/profile/${profile.name}/my-venues`}>
+                  My Venues
+                </StyledLink>
+              </li>
+            )}
+
+            <li>
+              <a href="#!" onClick={handleLogout}>
+                Logout
+              </a>
+            </li>
+          </>
+        ) : (
+          <li>
+            <a href="/login">Log in</a>
+          </li>
+        )}
       </StyledList>
     </NavBar>
   );

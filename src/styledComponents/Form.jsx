@@ -1,11 +1,10 @@
 import { styled } from "styled-components";
 
 export const Card = styled.div`
-  background-color: #F5EFE7;
+  background-color: #f5efe7;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 `;
 
 export const FormGroup = styled.div`
@@ -61,5 +60,5 @@ export const StyledInput = styled.input`
   margin-bottom: 10px;
   border: 1px solid black;
   border-radius: 4px;
-  width: 400px
+  width: 400px;
 `;

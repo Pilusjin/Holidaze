@@ -26,16 +26,17 @@ const SearchBar = ({ data, setFilteredResults }) => {
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
-  
+
     if (event.target.value === "") setFilteredResults(data);
-    
-    const results = data.filter((venue) =>
-    venue.name && venue.name.toLowerCase().includes(event.target.value.toLowerCase())
-  );
-  
-  setFilteredResults(results);
+
+    const results = data.filter(
+      (venue) =>
+        venue.name &&
+        venue.name.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+
+    setFilteredResults(results);
   };
-  
 
   return (
     <SearchContainer>

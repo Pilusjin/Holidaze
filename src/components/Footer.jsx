@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import React from "react";
 import { Link } from "react-router-dom";
 
 const StyledFooter = styled.footer`
@@ -14,8 +13,6 @@ const StyledFooter = styled.footer`
     margin: 0 5rem;
   }
 `;
-
-
 
 const FooterLinks = styled.div`
   display: flex;
