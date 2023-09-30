@@ -17,6 +17,7 @@ const HomePage = () => {
       .catch((error) => console.error('Error:', error));
   }, []);
 
+
   return (
     <Layout>
       <PageContainer>
@@ -30,7 +31,6 @@ const HomePage = () => {
                 <VenueImage src={venue.media[0]} alt={venue.name} />
                 <VenueDetails>
                   <h3>{venue.name}</h3>
-                  <p>{venue.description}</p>
                   <p>Price: ${venue.price} per night</p>
                 </VenueDetails>
               </VenueCard>

@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import { load } from "../api/storage";
 import { Card, FormGroup, Input, Label, SubmitButton, TextArea } from "../styledComponents/Form";
-import { CustomCalendar, Feature, FeatureList, GuestsInput, GuestsLabel, Image, ImageContainer, InfoRow, Location, PageContainer, StyledTable, Title, VenueInfoContainer } from "../styledComponents/Venue";
+import { BottomContent, CustomCalendar, Description, Feature, FeatureList, GuestsInput, GuestsLabel, Image, ImageContainerVenue, Info, InfoRow, Location, PageContainer, StyledTable, Title, VenueInfoContainer } from "../styledComponents/Venue";
+import styled from "styled-components";
 
 
 
@@ -18,6 +19,7 @@ const VenuePage = () => {
   const [selectingStartDate, setSelectingStartDate] = useState(true); // Determine what type of date is being selected
   const [numGuests, setNumGuests] = useState(1);
   const [showBookings, setShowBookings] = useState(false);
+  const [bookingSuccessful, setBookingSuccessful] = useState(undefined);
 
   useEffect(() => {
     fetch(`https://api.noroff.dev/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`)
@@ -118,10 +120,9 @@ const VenuePage = () => {
     });
 
     if (response.ok) {
-      window.location.reload();
-      alert('Booking successful');
+      setBookingSuccessful(true)
     } else {
-      alert('Booking failed');
+setBookingSuccessful(false)      
     }
   };
 
@@ -157,44 +158,72 @@ const VenuePage = () => {
     if (date.toDateString() === endDate?.toDateString()) return "selected-end"; // Class name for end date
   };
 
+
+  const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const AlertMessage = styled.div`
+  width: 300px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+`;
+
   return (
     <Layout>
       <PageContainer>
         <Title>{venue?.name}</Title>
         <Location>{venue?.location?.city}, {venue?.location?.country}</Location>
         <VenueInfoContainer>
-          <ImageContainer>
-            <Image src={venue?.media?.[0]} alt={venue?.name} />
-          </ImageContainer>
+  <ImageContainerVenue>
+    <Image src={venue?.media?.[0]} alt={venue?.name} />
+  </ImageContainerVenue>
 
-          <p>{venue?.description}</p>
+  <Info>
+    <InfoRow>
+      <span>Price:</span> <span>${venue?.price} /night</span>
+    </InfoRow>
+    <InfoRow>
+      <span>Max Guests:</span> <span>{venue?.maxGuests}</span>
+    </InfoRow>
+    <InfoRow>
+      <span>Rating:</span> <span>{venue?.rating} ★</span>
+    </InfoRow>
 
-          <InfoRow>
-            <span>Price:</span> <span>${venue?.price} /night</span>
-          </InfoRow>
-          <InfoRow>
-            <span>Max Guests:</span> <span>{venue?.maxGuests}</span>
-          </InfoRow>
-          <InfoRow>
-            <span>Rating:</span> <span>{venue?.rating} ★</span>
-          </InfoRow>
-
-          <FeatureList>
-            {venue?.meta?.wifi && <Feature>WiFi</Feature>}
-            {venue?.meta?.parking && <Feature>Parking</Feature>}
-            {venue?.meta?.breakfast && <Feature>Breakfast</Feature>}
-            {venue?.meta?.pets && <Feature>Pets Allowed</Feature>}
-          </FeatureList>
-
-          {venue?.owner && (
+    <FeatureList>
+      {venue?.meta?.wifi && <Feature>WiFi</Feature>}
+      {venue?.meta?.parking && <Feature>Parking</Feature>}
+      {venue?.meta?.breakfast && <Feature>Breakfast</Feature>}
+      {venue?.meta?.pets && <Feature>Pets Allowed</Feature>}
+    </FeatureList>
+    
+    {venue?.owner && (
             <div>
               <h3>Owner Information</h3>
               <p>Name: {venue.owner.name}</p>
               <p>Email: {venue.owner.email}</p>
             </div>
           )}
-        
-          {isEditing ? (
+  </Info>
+
+  <Description>
+    {venue?.description}
+  </Description>
+
+  <BottomContent>
+  {isEditing ? (
             <form onSubmit={handleEdit}>
               <Card>
                 <FormGroup>
@@ -321,15 +350,14 @@ const VenuePage = () => {
     )}
   </>
 ) : null}
+  </BottomContent>
+</VenueInfoContainer>
 
-
-
-
-
-
-
-        </VenueInfoContainer>
       </PageContainer>
+
+      {bookingSuccessful !== undefined ? <Overlay><AlertMessage>{bookingSuccessful ? "Booking successful!" : "Something went wrong!"}<br/><br/><SubmitButton onClick={() => window.location.reload()}>Confirm</SubmitButton></AlertMessage></Overlay> : null}
+
+
     </Layout>
   );
 };
