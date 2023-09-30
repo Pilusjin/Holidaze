@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components"; // Adjusted import
+import styled from "styled-components"; 
 
 export const CardContainer = styled.div`
   width: 300px;
@@ -8,7 +8,7 @@ export const CardContainer = styled.div`
   transition: box-shadow 0.3s ease-in-out;
   overflow: hidden;
   cursor: pointer;
-  background-color: #ffffff;  // Added background color
+  background-color: #ffffff; 
 
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -19,7 +19,7 @@ export const CardImage = styled.img`
   width: 100%;
   height: 300px;
   object-fit: cover;
-  border-bottom: 1px solid #f0f0f0;  // Added border for a little separation
+  border-bottom: 1px solid #f0f0f0; 
 `;
 
 export const CardContent = styled.div`
@@ -30,55 +30,62 @@ export const CardContent = styled.div`
 export const CardTitle = styled.h2`
   font-size: 1.2rem;
   margin: 0;
-  color: #333;  // Darkened text for better readability
-`;
-
-export const StarIcon = styled.span`
-  color: #D8C4B6;
-  margin-right: 4px;
+  color: #333; 
 `;
 
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f9f9f9;  // Added background color
+  background-color: #f9f9f9; 
 `;
 
 export const VenueCardsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  gap: 50px; 
   margin: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px; 
+
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 export const VenueCard = styled(Link)`
   border-radius: 10px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   display: grid;
-  justify-content: center;
-  justify-items: center;
-  text-align: center;
+  grid-template-columns: 1fr 1fr; 
+  gap: 20px;
   padding: 20px;
-  gap: 10px;
   text-decoration: none;
   color: inherit;
-  background-color: #ffffff;  // Added background color
-  transition: box-shadow 0.3s ease-in-out;  // Added transition for a subtle hover effect
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease-in-out;
+  width: 100%;  
 
   &:hover {
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);  // Enhanced hover effect
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   }
 `;
 
 export const VenueImage = styled.img`
   object-fit: cover;
-  height: 200px;
+  height: 150px; 
   width: 100%;
   border-radius: 10px;
-  margin-bottom: 10px;  // Added margin for a little separation
 `;
 
 export const VenueDetails = styled.div`
-  text-align: center;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
 `;

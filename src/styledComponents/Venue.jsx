@@ -2,30 +2,39 @@ import Calendar from "react-calendar";
 import { styled } from "styled-components";
 
 export const PageContainer = styled.div`
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 `;
 
 export const VenueInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 
+    "image image info"
+    "description description description"
+    "bottom bottom bottom";
   gap: 20px;
+`;
+
+export const ImageContainerVenue = styled.div`
+  grid-area: image;
+`;
+
+export const Info = styled.div`
+  grid-area: info;
+`;
+
+export const Description = styled.p`
+  grid-area: description;
+`;
+
+export const BottomContent = styled.div`
+  grid-area: bottom;
 `;
 
 export const Title = styled.h1`
   font-size: 2rem;
-`;
-
-export const ImageContainer = styled.div`
-  max-height: 500px;
-  max-width: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const Image = styled.img`
@@ -68,38 +77,53 @@ export const GuestsInput = styled.input`
 `;
 
 export const CustomCalendar = styled(Calendar)`
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  color: #333;
+  font-family: 'Arial', sans-serif;
 
   .react-calendar__tile {
-    background-color: #F5EFE7;
-    border: 0.1px solid black;
-    padding: 5px;
+    background-color: #F2D6B3;
+    border-radius: 4px;
+    border: 1px solid #F2F2F2;
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #D99255;
+    }
   }
 
   .react-calendar__navigation button {
     background: none;
-    border: 0.1px solid black;
-    padding: 5px;
-    margin: 10px 0px;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
 
+    &:hover {
+      background-color: #D99255;
+    }
   }
 
   .react-calendar__month-view__weekdays {
     padding-bottom: 5px;
+    font-weight: bold;
   }
 
   .booked {
-    background-color: #d8c4b6b8 !important;
-    
+    background-color: #F2F2F2 !important;
   }
   
-  .selected-start {
-    background-color: #4F709C !important;
-  }
-  
-  .selected-end {
-    background-color: #4F709C !important;
+  .selected-start, .selected-end {
+    background-color: #007c06 !important;
+    color: #ffffff !important;
   }
 `;
+
 
 export const StyledTable = styled.table`
   width: 100%;
@@ -107,7 +131,7 @@ export const StyledTable = styled.table`
   margin: 20px 0;
 
   thead {
-    background-color: #f2f2f2;
+    background-color: #F2D6B3;
   }
 
   th, td {
@@ -117,34 +141,10 @@ export const StyledTable = styled.table`
   }
 
   tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #D99255;
   }
 
   tr:hover {
-    background-color: #ddd;
+    background-color: #D99255;
   }
-`;
-
-export const Container = styled.div`
-  margin: 0 auto;
-  padding: 16px;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const VenueImage = styled.img`
-  max-height: 500px;
-  max-width: 100%;
-  border-radius: 10px;
-
-  @media (max-width: 768px) {
-    max-height: 300px;
-  }
-`;
-
-export const VenueInfo = styled.div`
-  text-align: center;
-  margin-top: 20px;
 `;

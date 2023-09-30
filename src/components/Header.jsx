@@ -5,9 +5,8 @@ import { clear, load } from "../api/storage";
 
 const NavBar = styled.nav`
   font-size: 18px;
-  background:#36454F;
+  background:#D99255;
 ;
-  border-bottom: 1px solid;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,23 +29,23 @@ const StyledList = styled.ul`
   padding: 1vh 0;
 
   a, a:visited {
-    color: #ffffff;  /* White color */
-    text-decoration: none;  /* Optional: Remove underline */
-    transition: color 0.3s ease-in-out;  /* Optional: Smooth color transition */
+    color: #ffffff; 
+    text-decoration: none; 
+    transition: color 0.3s ease-in-out; 
   }
 
   a:hover, a:focus {
-    color: #bbbbbb;  /* Lighter color on hover/focus for a subtle effect */
+    color: #bbbbbb; 
   }
 `;
 
 const StyledLink = styled(Link)`
-  color: #ffffff;  /* White color */
-  text-decoration: none;  /* Optional: Remove underline */
-  transition: color 0.3s ease-in-out;  /* Optional: Smooth color transition */
+  color: #ffffff; 
+  text-decoration: none;  
+  transition: color 0.3s ease-in-out;  
 
   &:hover, &:focus {
-    color: #bbbbbb;  /* Lighter color on hover/focus for a subtle effect */
+    color: #bbbbbb; 
   }
 `;
 
