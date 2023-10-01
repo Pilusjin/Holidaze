@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 400px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -18,11 +18,13 @@ export const InputField = styled.input`
 `;
 
 export const RegisterButton = styled(Link)`
+  margin-top: 20px;
   text-align: center;
   background-color: #007bff;
   color: white;
   padding: 10px;
   border-radius: 4px;
+  width: 120px;
   text-decoration: none;
   cursor: pointer;
 `;
@@ -73,4 +75,17 @@ export const LoginContainer = styled.div`
   justify-content: center;
   height: 100vh;
   background-color: #f2f2f2;
+`;
+export const ErrorMessage = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ff4444; // Rød bakgrunnsfarge
+  color: white; // Hvit tekst
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 1000; // Sørger for at feilmeldingen vises over andre elementer
 `;

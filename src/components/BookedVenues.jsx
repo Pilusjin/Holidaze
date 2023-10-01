@@ -15,9 +15,7 @@ function BookedVenues() {
     const fetchBookings = async () => {
       const userProfile = JSON.parse(localStorage.getItem("profile") || "{}");
 
-      // brukte bare feil API
-      // neste blir  se litt p hvorfor bildene ikke kommer opp
-      // jeg tipper det har noe med litt annerledes struktur p objektene som n kommer fra backend
+
       const url = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfile.name}/bookings?_venue=true`;
       const token = localStorage.getItem("token");
 

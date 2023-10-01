@@ -22,7 +22,7 @@ const LoginPage = () => {
     };
 
     try {
-      await login(loginData); // Call the login function from api.js
+      await login(loginData);
 
       console.log("Login successful!"); // Debugging line
 
@@ -39,7 +39,7 @@ const LoginPage = () => {
         <LoginForm onSubmit={handleLogin}>
           <InputField
             type="text"
-            placeholder="Username"
+            placeholder="Email"
             value={loginEmail}
             onChange={(e) => setLoginEmail(e.target.value)}
           />

@@ -42,11 +42,10 @@ export const PageContainer = styled.div`
 
 export const VenueCardsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* This line was updated */
   gap: 50px;
-  margin: 20px;
+  margin: 20px auto 0 auto;
   max-width: 1200px;
-  margin: 0 auto;
   padding: 10px;
 
   @media (min-width: 600px) {
@@ -63,8 +62,8 @@ export const VenueCard = styled(Link)`
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  padding: 20px;
+  gap: 10px;
+  padding: 10px;
   text-decoration: none;
   color: inherit;
   background-color: #ffffff;

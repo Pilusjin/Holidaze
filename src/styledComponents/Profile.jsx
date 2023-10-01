@@ -7,6 +7,7 @@ export const VenuesContainer = styled.div`
   background-color: #ffffff;
   border-radius: 8px;
   padding: 20px;
+  margin: auto;
 `;
 
 export const ProfileContainer = styled.div`
