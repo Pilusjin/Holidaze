@@ -24,14 +24,7 @@ Holidaze, a newly unveiled accommodation booking platform, necessitated a compre
 - **Frontend**: React.js
 - **Styling**: Styled-components
 - **Routing**: React Router
-- **Backend API**: (Link to backend API documentation)
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- **Backend API**: https://docs.noroff.dev/holidaze/bookings
 
 ## Installation
 
@@ -46,5 +39,5 @@ cd holidaze-app
 npm install
 
 # Start the development server
-npm start
+npm dev
 ```
