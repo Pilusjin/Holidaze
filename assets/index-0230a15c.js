@@ -171,6 +171,7 @@ Error generating stack: `+a.message+`
   min-height: 100vh;
   background-color: #f9f9f9;
 `,Wi=b.div`
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* This line was updated */
   gap: 50px;
@@ -470,6 +471,7 @@ Error generating stack: `+a.message+`
   padding: 20px;
   margin: auto;
 `,Ov=b.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
