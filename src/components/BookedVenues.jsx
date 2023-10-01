@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import {
-  CardContainer,
-  CardContent,
-  CardImage,
-  CardTitle,
+  VenueCard,
   VenueCardsContainer,
+  VenueDetails,
+  VenueImage,
 } from "../styledComponents/Home";
-import { VenuesContainer } from "../styledComponents/Profile";
 
 function BookedVenues() {
   const [bookings, setBookings] = useState([]);
@@ -14,7 +12,6 @@ function BookedVenues() {
   useEffect(() => {
     const fetchBookings = async () => {
       const userProfile = JSON.parse(localStorage.getItem("profile") || "{}");
-
 
       const url = `https://api.noroff.dev/api/v1/holidaze/profiles/${userProfile.name}/bookings?_venue=true`;
       const token = localStorage.getItem("token");
@@ -41,25 +38,24 @@ function BookedVenues() {
 
     fetchBookings();
   }, []);
-
+  console.log(bookings);
   return (
     <div>
       <h2>Your Bookings:</h2>
-      
-        {bookings.map((booking, index) => (
-          <VenueCardsContainer key={index}>
-            <CardContainer>
-              <CardImage src={booking.venue?.media}></CardImage>
-              <CardContent>
-                <CardTitle>{booking.venue?.name}</CardTitle>
-                <p>From: {new Date(booking.dateFrom).toLocaleDateString()}</p>
-                <p>To: {new Date(booking.dateTo).toLocaleDateString()}</p>
-                <p>Number of guests: {booking.guests}</p>
-              </CardContent>
-            </CardContainer>
-          </VenueCardsContainer>
+      <VenueCardsContainer>
+        {bookings.map((booking) => (
+          <VenueCard key={booking.id} to={`/venue/${booking.id}`}>
+            <VenueImage src={booking.venue.media} alt={booking.venue.name} />
+            <VenueDetails>
+              <h3>{booking.venue.name}</h3>
+              <p>Price: ${booking.venue.price} per night</p>
+              <p>From: {new Date(booking.dateFrom).toLocaleDateString()}</p>
+              <p>To: {new Date(booking.dateTo).toLocaleDateString()}</p>
+              <p>Number of guests: {booking.guests}</p>
+            </VenueDetails>
+          </VenueCard>
         ))}
-      
+      </VenueCardsContainer>
     </div>
   );
 }

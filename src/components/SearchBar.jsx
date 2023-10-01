@@ -25,17 +25,19 @@ const SearchBar = ({ data, setFilteredResults }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+    const value = event.target.value;
+    setSearchTerm(value);
 
-    if (event.target.value === "") setFilteredResults(data);
+    if (value === "") {
+      setFilteredResults(data);
+    } else {
+      const results = data.filter(
+        (venue) =>
+          venue.name && venue.name.toLowerCase().includes(value.toLowerCase())
+      );
 
-    const results = data.filter(
-      (venue) =>
-        venue.name &&
-        venue.name.toLowerCase().includes(event.target.value.toLowerCase())
-    );
-
-    setFilteredResults(results);
+      setFilteredResults(results);
+    }
   };
 
   return (

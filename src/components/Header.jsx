@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../assets/Holidaze-logos_white.png";
 import { clear, load } from "../api/storage";
 
@@ -52,11 +52,9 @@ const StyledLink = styled(Link)`
 
 export default function Header() {
   const profile = load("profile");
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     clear();
-    navigate("/");
   };
 
   return (
@@ -83,7 +81,9 @@ export default function Header() {
             )}
 
             <li>
-              <StyledLink onClick={handleLogout}>Logout</StyledLink>
+              <StyledLink to="/login" onClick={handleLogout}>
+                Logout
+              </StyledLink>
             </li>
           </>
         ) : (

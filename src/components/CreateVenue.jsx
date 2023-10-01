@@ -1,5 +1,4 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
 import { apiUrl } from "../api/constants";
 import {
   Card,
@@ -11,6 +10,7 @@ import {
   SubmitButton,
   TextArea,
 } from "../styledComponents/Form";
+import { AlertMessage, Overlay } from "../styledComponents/Venue";
 
 const initialVenueState = {
   name: "",
@@ -34,6 +34,8 @@ const initialVenueState = {
 
 const VenueCreationForm = () => {
   const [newVenue, setNewVenue] = useState(initialVenueState);
+  const [venueCreatedSuccessfully, setVenueCreatedSuccessfully] =
+    useState(undefined);
 
   const handleVenueInputChange = (field, value) => {
     if (field === "price" || field === "maxGuests") {
@@ -43,10 +45,6 @@ const VenueCreationForm = () => {
       ...prevVenue,
       [field]: value,
     }));
-  };
-
-  VenueCreationForm.propTypes = {
-    onSubmitVenue: PropTypes.func.isRequired,
   };
 
   const handleCheckboxChange = (field) => {
@@ -75,16 +73,19 @@ const VenueCreationForm = () => {
 
       if (response.ok) {
         setNewVenue(initialVenueState);
+        setVenueCreatedSuccessfully(true);
       } else {
         console.error("Failed to create venue");
+        setVenueCreatedSuccessfully(false);
       }
     } catch (error) {
       console.error("Error creating venue:", error);
+      setVenueCreatedSuccessfully(false);
     }
   };
 
   return (
-    <Card>
+    <><Card>
       <form onSubmit={handleSubmitVenue}>
         <h2>Create a New Venue</h2>
 
@@ -226,6 +227,23 @@ const VenueCreationForm = () => {
         </FormGroup>
       </form>
     </Card>
+      {
+        venueCreatedSuccessfully !== undefined ? (
+          <Overlay>
+            <AlertMessage>
+              {venueCreatedSuccessfully
+                ? "Venue was successfully created"
+                : "Something went wrong!"}
+              <br />
+              <br />
+              <SubmitButton onClick={() => window.location.reload()}>
+                Confirm
+              </SubmitButton>
+            </AlertMessage>
+          </Overlay>
+        ) : null
+      }</>
   );
+
 };
 export default VenueCreationForm;

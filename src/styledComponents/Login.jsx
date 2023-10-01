@@ -20,7 +20,7 @@ export const InputField = styled.input`
 export const RegisterButton = styled(Link)`
   margin-top: 20px;
   text-align: center;
-  background-color: #007bff;
+  background-color: #007c06;
   color: white;
   padding: 10px;
   border-radius: 4px;
@@ -48,7 +48,7 @@ export const RegisterContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 70vh;
   background-color: #f4f4f4;
 `;
 
@@ -60,7 +60,7 @@ export const RegisterForm = styled.form`
 `;
 
 export const SubmitButton = styled.button`
-  background: blue;
+  background: #007c06;
   color: white;
   padding: 0.5em 1em;
   border: none;
@@ -73,7 +73,7 @@ export const LoginContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 70vh;
   background-color: #f2f2f2;
 `;
 export const ErrorMessage = styled.div`
