@@ -57,19 +57,23 @@ const MyVenues = () => {
         {profile?.venueManager && <VenueCreationForm />}
       </ProfileContainer>
 
-      <h1>My Venues</h1>
-      <VenueCardsContainer>
-        {venues.map((venue) => (
-          <VenueCard key={venue.id} to={`/venue/${venue.id}`}>
-            <VenueImage src={venue.media[0]} alt={venue.name} />
-            <VenueDetails>
-              <h3>{venue.name}</h3>
-              <p>{truncateDescription(venue.description)}</p>
-              <p>Price: ${venue.price} per night</p>
-            </VenueDetails>
-          </VenueCard>
-        ))}
-      </VenueCardsContainer>
+      {venues.length > 0 && (
+        <>
+          <h1>My Venues</h1>
+          <VenueCardsContainer>
+            {venues.map((venue) => (
+              <VenueCard key={venue.id} to={`/venue/${venue.id}`}>
+                <VenueImage src={venue.media[0]} alt={venue.name} />
+                <VenueDetails>
+                  <h3>{venue.name}</h3>
+                  <p>{truncateDescription(venue.description)}</p>
+                  <p>Price: ${venue.price} per night</p>
+                </VenueDetails>
+              </VenueCard>
+            ))}
+          </VenueCardsContainer>
+        </>
+      )}
     </Layout>
   );
 };
