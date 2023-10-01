@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const StyledFooter = styled.footer`
   background: gray;
@@ -14,28 +13,10 @@ const StyledFooter = styled.footer`
   }
 `;
 
-const FooterLinks = styled.div`
-  display: flex;
-  gap: 2rem;
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-`;
-
 export default function Footer() {
   return (
     <StyledFooter>
-      <>
-        <p>Holidaze</p>
-        <FooterLinks>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
-          <Link to="/privacy">Privacy Policy</Link>
-        </FooterLinks>
-        <p>Copyright 2023</p>
-      </>
+      <p>Designed and Built by Peter Andre Ilusjin</p>
     </StyledFooter>
   );
 }

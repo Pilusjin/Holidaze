@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import { ProfileContainer } from "../styledComponents/Profile";
 import VenueCreationForm from "../components/CreateVenue";
-import { OwnVenues } from "../components/OwnVenues";
+
 import {
   VenueCard,
   VenueCardsContainer,
@@ -50,10 +50,10 @@ const MyVenues = () => {
   return (
     <Layout>
       <ProfileContainer>
-        <h1>My Venues</h1>
         {profile?.venueManager && <VenueCreationForm />}
-        {profile?.venueManager && name && <OwnVenues name={name} />}
       </ProfileContainer>
+
+      <h1>My Venues</h1>
       <VenueCardsContainer>
         {venues.map((venue) => (
           <VenueCard key={venue.id} to={`/venue/${venue.id}`}>

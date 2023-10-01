@@ -45,7 +45,7 @@ function BookedVenues() {
   return (
     <div>
       <h2>Your Bookings:</h2>
-      <VenuesContainer>
+      
         {bookings.map((booking, index) => (
           <VenueCardsContainer key={index}>
             <CardContainer>
@@ -59,7 +59,7 @@ function BookedVenues() {
             </CardContainer>
           </VenueCardsContainer>
         ))}
-      </VenuesContainer>
+      
     </div>
   );
 }

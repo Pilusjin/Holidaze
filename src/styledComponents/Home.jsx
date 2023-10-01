@@ -42,7 +42,7 @@ export const PageContainer = styled.div`
 
 export const VenueCardsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* This line was updated */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 50px;
   margin: 20px auto 0 auto;
   max-width: 1200px;

@@ -8,8 +8,10 @@ import {
   RegisterForm,
   SubmitButton,
 } from "../styledComponents/Login";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,7 +39,7 @@ const RegisterPage = () => {
       if (response.ok) {
         const responseData = await response.json();
         console.log("Registration successful:", responseData);
-        window.location.href = "/login";
+        navigate("/login");
       } else {
         const errorData = await response.json();
         console.error("Registration failed:", errorData);

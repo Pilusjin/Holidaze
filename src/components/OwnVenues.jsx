@@ -41,7 +41,6 @@ export const OwnVenues = ({ name }) => {
 
   return (
     <div>
-      <h2>Your Managed Venues:</h2>
       <VenuesContainer>
         {venues.map((venue) => (
           <VenueCardsContainer key={venue.id} to={`/venues/${venue.id}`}>

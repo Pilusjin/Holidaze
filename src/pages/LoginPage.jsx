@@ -8,8 +8,10 @@ import {
   RegisterButton,
   SubmitButton,
 } from "../styledComponents/Login";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -26,7 +28,7 @@ const LoginPage = () => {
 
       console.log("Login successful!"); // Debugging line
 
-      window.location.href = "/";
+      navigate("/");
     } catch (error) {
       console.error("Login failed:", error);
     }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import { load } from "../api/storage";
 import {
@@ -31,6 +31,7 @@ import {
 import styled from "styled-components";
 
 const VenuePage = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [venue, setVenue] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -87,7 +88,7 @@ const VenuePage = () => {
       }
     );
 
-    if (response.ok) window.location.replace("/");
+    if (response.ok) navigate("/");
   };
 
   const handleEdit = async (e) => {
@@ -200,6 +201,10 @@ const VenuePage = () => {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+  `;
+  const SpacedButton = styled(SubmitButton)`
+    margin-right: 10px; /* Adjust value to your preference */
+    margin-bottom: 10px; /* Adjust value to your preference */
   `;
 
   const AlertMessage = styled.div`
@@ -329,15 +334,15 @@ const VenuePage = () => {
 
             {profile?.email === venue?.owner?.email ? (
               <>
-                <SubmitButton onClick={handleDelete}>Delete Venue</SubmitButton>
-                <SubmitButton onClick={() => setIsEditing(true)}>
+                <SpacedButton onClick={handleDelete}>Delete Venue</SpacedButton>
+                <SpacedButton onClick={() => setIsEditing(true)}>
                   Edit Venue
-                </SubmitButton>
+                </SpacedButton>
 
                 {/* New Button to Show/Hide Bookings */}
-                <SubmitButton onClick={() => setShowBookings(!showBookings)}>
+                <SpacedButton onClick={() => setShowBookings(!showBookings)}>
                   {showBookings ? "Hide Bookings" : "Show Bookings"}
-                </SubmitButton>
+                </SpacedButton>
 
                 {showBookings && (
                   <StyledTable>
@@ -378,7 +383,7 @@ const VenuePage = () => {
                   tileClassName={tileClassName}
                 />
 
-                <SubmitButton onClick={() => window.location.replace("/login")}>
+                <SubmitButton onClick={() => navigate("/login")}>
                   Want to book? Login
                 </SubmitButton>
               </>
