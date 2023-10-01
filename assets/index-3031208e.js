@@ -141,7 +141,7 @@ Error generating stack: `+a.message+`
   &:focus {
     color: #bbbbbb;
   }
-`;function Tw(){const e=dc("profile"),t=$o(),n=()=>{Dw(),t("/logout")};return f.jsxs(Ow,{children:[f.jsx(Wr,{to:"/",children:f.jsx(jw,{src:Ew,alt:"Logo"})}),f.jsxs(Pw,{children:[f.jsx("li",{children:f.jsx(Wr,{to:"/",children:"Home"})}),e?f.jsxs(f.Fragment,{children:[f.jsx("li",{children:f.jsx(Wr,{to:`/profile/${e.name}`,children:"Profile"})}),(e==null?void 0:e.venueManager)&&f.jsx("li",{children:f.jsx(Wr,{to:`/profile/${e.name}/my-venues`,children:"My Venues"})}),f.jsx("li",{children:f.jsx("a",{onClick:n,children:"Logout"})})]}):f.jsx("li",{children:f.jsx(Wr,{to:"/login",children:"Log in"})})]})]})}const Tr=e=>f.jsxs(f.Fragment,{children:[f.jsx(Tw,{}),e.children,f.jsx(Cw,{})]}),Nw=b.div`
+`;function Tw(){const e=dc("profile"),t=$o(),n=()=>{Dw(),t("/")};return f.jsxs(Ow,{children:[f.jsx(Wr,{to:"/",children:f.jsx(jw,{src:Ew,alt:"Logo"})}),f.jsxs(Pw,{children:[f.jsx("li",{children:f.jsx(Wr,{to:"/",children:"Home"})}),e?f.jsxs(f.Fragment,{children:[f.jsx("li",{children:f.jsx(Wr,{to:`/profile/${e.name}`,children:"Profile"})}),(e==null?void 0:e.venueManager)&&f.jsx("li",{children:f.jsx(Wr,{to:`/profile/${e.name}/my-venues`,children:"My Venues"})}),f.jsx("li",{children:f.jsx("a",{onClick:n,children:"Logout"})})]}):f.jsx("li",{children:f.jsx(Wr,{to:"/login",children:"Log in"})})]})]})}const Tr=e=>f.jsxs(f.Fragment,{children:[f.jsx(Tw,{}),e.children,f.jsx(Cw,{})]}),Nw=b.div`
   width: 300px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
